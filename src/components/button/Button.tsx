@@ -2,13 +2,13 @@ import React from "react";
 import { S } from "./_styles";
 
 type ButtonProps = {
-  btnName: string;
-  btnDisable: any;
+  name: string;
+  btnDisable: boolean;
   onClickCallback: () => void;
 };
 
 export const Button: React.FC<ButtonProps> = ({
-  btnName,
+  name,
   btnDisable,
   onClickCallback,
 }) => {
@@ -16,7 +16,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <S.Button disabled={btnDisable} onClick={onClickHandler}>
-      {btnName}
+      {name}
     </S.Button>
   );
 };

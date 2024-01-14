@@ -3,7 +3,7 @@ import { S } from "../_styles";
 
 type ValueInputProps = {
   spanText: string;
-  inputError: string;
+  inputError: boolean;
   value: number;
 
   valueChangeCallback: (value: number) => void;
@@ -25,7 +25,7 @@ export const ValueInput: React.FC<ValueInputProps> = ({
         type={"number"}
         value={value}
         onChange={onValueChangeHandler}
-        className={inputError}
+        errorMessage={inputError}
       />
     </S.ValueInput>
   );

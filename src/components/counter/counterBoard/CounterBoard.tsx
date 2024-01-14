@@ -36,25 +36,28 @@ export const CounterBoard: React.FC<CounterBoardProps> = ({
   const errorStyle =
     minInputValue === maxInputValue ||
     maxInputValue < minInputValue ||
-    value === maxInputValue ||
-    minInputValue < 0
-      ? "headerError"
-      : "";
+    value === maxValue ||
+    minInputValue < 0;
 
   const incDisabled = value >= maxInputValue;
   const resDisabled = value <= minInputValue;
 
   return (
     <S.CounterBoard>
-      <S.Score className={errorStyle}>{message}</S.Score>
+      <S.Score
+        //className={errorStyle}
+        error={errorStyle}
+      >
+        {message}
+      </S.Score>
       <S.ButtonsWrapper>
         <Button
-          btnName={"Increment"}
+          name={"Increment"}
           btnDisable={incDisabled}
           onClickCallback={incHandler}
         />
         <Button
-          btnName={"Reset"}
+          name={"Reset"}
           btnDisable={resDisabled}
           onClickCallback={resetHandler}
         />

@@ -49,12 +49,10 @@ export const Counter = () => {
 
   const incHandler = () => setValue((prev) => prev + 1);
   const resetHandler = () => setValue(minValue);
-
   const MinValueInputChange = (minInputValue: number) =>
     setMinInputValue(minInputValue);
   const MaxValueInputChange = (maxInputValue: number) =>
     setMaxInputValue(maxInputValue);
-
   const setHandler = () => {
     setMinValue(minInputValue);
     setMaxValue(maxInputValue);

@@ -29,17 +29,14 @@ export const Settings: React.FC<SettingsProps> = ({
     MinValueInputChangeCallback(minValue);
   const onClickCallbackHandler = () => setHandler();
 
-  const btnDisable =
+  const btnDisableCondition =
     minInputValue < 0 ||
     minInputValue === maxInputValue ||
     maxInputValue < minInputValue ||
     (minValue === minInputValue && maxValue === maxInputValue);
-  const minInputError =
-    maxInputValue === minInputValue || minInputValue < 0 ? "inputError" : "";
+  const minInputError = maxInputValue === minInputValue || minInputValue < 0;
   const maxInputError =
-    maxInputValue === minInputValue || maxInputValue < minInputValue
-      ? "inputError"
-      : "";
+    maxInputValue === minInputValue || maxInputValue < minInputValue;
 
   return (
     <S.Settings>
@@ -58,8 +55,8 @@ export const Settings: React.FC<SettingsProps> = ({
         />
       </S.InputsWrapper>
       <Button
-        btnName={"Set"}
-        btnDisable={btnDisable}
+        name={"Set"}
+        btnDisable={btnDisableCondition}
         onClickCallback={onClickCallbackHandler}
       />
     </S.Settings>

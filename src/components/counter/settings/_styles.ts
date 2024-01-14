@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Settings = styled.div`
   display: flex;
@@ -31,12 +31,18 @@ const ValueInput = styled.div`
 
   align-items: center;
 `;
-const Input = styled.input`
+const Input = styled.input<{ errorMessage: boolean }>`
   text-align: center;
   font-family: "Montserrat", sans-serif;
   font-size: 20px;
   border-radius: 10px;
   border: 2px solid deepskyblue;
+
+  ${(props) =>
+    props.errorMessage &&
+    css<{ errorMessage: boolean }>`
+      background-color: rgba(255, 0, 0, 0.66);
+    `}
 `;
 const Span = styled.span`
   font-size: 20px;
