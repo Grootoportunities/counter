@@ -76,12 +76,10 @@ export const Counter = () => {
     minInputValue < 0;
   const incDisabled =
     value >= maxInputValue ||
-    errorStyle ||
     minValue !== minInputValue ||
     maxValue !== maxInputValue;
   const resDisabled =
     value <= minInputValue ||
-    errorStyle ||
     minValue !== minInputValue ||
     maxValue !== maxInputValue;
 
