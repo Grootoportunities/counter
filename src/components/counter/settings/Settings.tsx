@@ -1,29 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import { ValueInput } from "./valueInput/ValueInput";
 import { Button } from "../../button/Button";
 import { S } from "./_styles";
 
 type SettingsProps = {
-  setHandler: (minValue: number, maxValue: number) => void;
+  minValue: number;
+  maxValue: number;
+  minInputValue: number;
+  maxInputValue: number;
+
+  setHandler: () => void;
+  MinValueInputChangeCallback: (minInputValue: number) => void;
+  MaxValueInputChangeCallback: (maxInputValue: number) => void;
 };
 
-export const Settings: React.FC<SettingsProps> = ({ setHandler }) => {
-  const [minInputValue, setMinInputValue] = useState<number>(0);
-  const [maxInputValue, setMaxInputValue] = useState<number>(1);
-
+export const Settings: React.FC<SettingsProps> = ({
+  minValue,
+  maxValue,
+  minInputValue,
+  maxInputValue,
+  setHandler,
+  MinValueInputChangeCallback,
+  MaxValueInputChangeCallback,
+}) => {
   const onMaxValueChangeHandler = (maxValue: number) =>
-    setMaxInputValue(maxValue);
+    MaxValueInputChangeCallback(maxValue);
   const onMinValueChangeHandler = (minValue: number) =>
-    setMinInputValue(minValue);
-
-  const onClickCallbackHandler = () => {
-    setHandler(minInputValue, maxInputValue);
-  };
+    MinValueInputChangeCallback(minValue);
+  const onClickCallbackHandler = () => setHandler();
 
   const btnDisable =
     minInputValue < 0 ||
     minInputValue === maxInputValue ||
-    maxInputValue < minInputValue;
+    maxInputValue < minInputValue ||
+    (minValue === minInputValue && maxValue === maxInputValue);
   const minInputError =
     maxInputValue === minInputValue || minInputValue < 0 ? "inputError" : "";
   const maxInputError =

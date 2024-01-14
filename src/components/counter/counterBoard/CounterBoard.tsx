@@ -5,6 +5,8 @@ import { S } from "./_styles";
 type CounterBoardProps = {
   minValue: number;
   maxValue: number;
+  minInputValue: number;
+  maxInputValue: number;
   value: number;
 
   incHandler: () => void;
@@ -14,33 +16,37 @@ type CounterBoardProps = {
 export const CounterBoard: React.FC<CounterBoardProps> = ({
   minValue,
   maxValue,
+  minInputValue,
+  maxInputValue,
   value,
   incHandler,
   resetHandler,
 }) => {
-  const errorMessage =
-    minValue === maxValue
+  const message =
+    minInputValue === maxInputValue
       ? "Max and min values can't be equal!"
-      : maxValue < minValue
+      : maxInputValue < minInputValue
         ? "Max value can't be less than min value!"
-        : minValue < 0
+        : minInputValue < 0
           ? "Min value can't be negative!"
-          : value;
+          : minValue !== minInputValue || maxValue !== maxInputValue
+            ? "Enter values and press 'set'"
+            : value;
 
   const errorStyle =
-    minValue === maxValue ||
-    maxValue < minValue ||
-    value === maxValue ||
-    minValue < 0
+    minInputValue === maxInputValue ||
+    maxInputValue < minInputValue ||
+    value === maxInputValue ||
+    minInputValue < 0
       ? "headerError"
       : "";
 
-  const incDisabled = value >= maxValue;
-  const resDisabled = value <= minValue;
+  const incDisabled = value >= maxInputValue;
+  const resDisabled = value <= minInputValue;
 
   return (
     <S.CounterBoard>
-      <S.Score className={errorStyle}>{errorMessage}</S.Score>
+      <S.Score className={errorStyle}>{message}</S.Score>
       <S.ButtonsWrapper>
         <Button
           btnName={"Increment"}

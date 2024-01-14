@@ -20,7 +20,9 @@ const Score = styled.h3`
 
   text-align: center;
 
-  min-width: 200px;
+  width: 200px;
+
+  white-space: normal;
 `;
 
 export const S = { CounterBoard, ButtonsWrapper, Score };
