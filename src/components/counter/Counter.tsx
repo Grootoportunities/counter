@@ -59,6 +59,32 @@ export const Counter = () => {
     setValue(minInputValue);
   };
 
+  const message =
+    minInputValue === maxInputValue
+      ? "Max and min values can't be equal!"
+      : maxInputValue < minInputValue
+        ? "Max value can't be less than min value!"
+        : minInputValue < 0
+          ? "Min value can't be negative!"
+          : minValue !== minInputValue || maxValue !== maxInputValue
+            ? "Enter values and press 'set'"
+            : value;
+  const errorStyle =
+    minInputValue === maxInputValue ||
+    maxInputValue < minInputValue ||
+    value === maxValue ||
+    minInputValue < 0;
+  const incDisabled =
+    value >= maxInputValue ||
+    errorStyle ||
+    minValue !== minInputValue ||
+    maxValue !== maxInputValue;
+  const resDisabled =
+    value <= minInputValue ||
+    errorStyle ||
+    minValue !== minInputValue ||
+    maxValue !== maxInputValue;
+
   return (
     <S.Counter>
       <Settings
@@ -71,13 +97,12 @@ export const Counter = () => {
         maxValue={maxValue}
       />
       <CounterBoard
-        minValue={minValue}
-        maxValue={maxValue}
-        minInputValue={minInputValue}
-        maxInputValue={maxInputValue}
-        value={value}
         incHandler={incHandler}
         resetHandler={resetHandler}
+        message={message}
+        errorStyle={errorStyle}
+        incDisabled={incDisabled}
+        resDisabled={resDisabled}
       />
     </S.Counter>
   );

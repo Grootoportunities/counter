@@ -3,19 +3,15 @@ import { S } from "./_styles";
 
 type ButtonProps = {
   name: string;
-  btnDisable: boolean;
-  onClickCallback: () => void;
+  disabled: boolean;
+  onClick: () => void;
 };
 
-export const Button: React.FC<ButtonProps> = ({
-  name,
-  btnDisable,
-  onClickCallback,
-}) => {
-  const onClickHandler = () => onClickCallback();
+export const Button: React.FC<ButtonProps> = ({ name, disabled, onClick }) => {
+  const onClickHandler = () => onClick();
 
   return (
-    <S.Button disabled={btnDisable} onClick={onClickHandler}>
+    <S.Button disabled={disabled} onClick={onClickHandler}>
       {name}
     </S.Button>
   );

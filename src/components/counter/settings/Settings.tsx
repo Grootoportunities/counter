@@ -56,8 +56,8 @@ export const Settings: React.FC<SettingsProps> = ({
       </S.InputsWrapper>
       <Button
         name={"Set"}
-        btnDisable={btnDisableCondition}
-        onClickCallback={onClickCallbackHandler}
+        disabled={btnDisableCondition}
+        onClick={onClickCallbackHandler}
       />
     </S.Settings>
   );
