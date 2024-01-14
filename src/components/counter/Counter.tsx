@@ -59,6 +59,14 @@ export const Counter = () => {
     setValue(minInputValue);
   };
 
+  const btnDisableCondition =
+    minInputValue < 0 ||
+    minInputValue === maxInputValue ||
+    maxInputValue < minInputValue ||
+    (minValue === minInputValue && maxValue === maxInputValue);
+  const minInputError = maxInputValue === minInputValue || minInputValue < 0;
+  const maxInputError =
+    maxInputValue === minInputValue || maxInputValue < minInputValue;
   const message =
     minInputValue === maxInputValue
       ? "Max and min values can't be equal!"
@@ -91,8 +99,9 @@ export const Counter = () => {
         MaxValueInputChangeCallback={MaxValueInputChange}
         minInputValue={minInputValue}
         maxInputValue={maxInputValue}
-        minValue={minValue}
-        maxValue={maxValue}
+        btnDisableCondition={btnDisableCondition}
+        minInputError={minInputError}
+        maxInputError={maxInputError}
       />
       <CounterBoard
         incHandler={incHandler}

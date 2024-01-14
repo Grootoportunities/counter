@@ -4,8 +4,10 @@ import { Button } from "../../button/Button";
 import { S } from "./_styles";
 
 type SettingsProps = {
-  minValue: number;
-  maxValue: number;
+  btnDisableCondition: boolean;
+  minInputError: boolean;
+  maxInputError: boolean;
+
   minInputValue: number;
   maxInputValue: number;
 
@@ -15,8 +17,9 @@ type SettingsProps = {
 };
 
 export const Settings: React.FC<SettingsProps> = ({
-  minValue,
-  maxValue,
+  btnDisableCondition,
+  minInputError,
+  maxInputError,
   minInputValue,
   maxInputValue,
   setHandler,
@@ -28,15 +31,6 @@ export const Settings: React.FC<SettingsProps> = ({
   const onMinValueChangeHandler = (minValue: number) =>
     MinValueInputChangeCallback(minValue);
   const onClickCallbackHandler = () => setHandler();
-
-  const btnDisableCondition =
-    minInputValue < 0 ||
-    minInputValue === maxInputValue ||
-    maxInputValue < minInputValue ||
-    (minValue === minInputValue && maxValue === maxInputValue);
-  const minInputError = maxInputValue === minInputValue || minInputValue < 0;
-  const maxInputError =
-    maxInputValue === minInputValue || maxInputValue < minInputValue;
 
   return (
     <S.Settings>
