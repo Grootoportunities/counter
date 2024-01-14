@@ -12,16 +12,40 @@ export const Counter = () => {
 
   useEffect(() => {
     let stringValue = localStorage.getItem("counterValue");
+    let minValue = localStorage.getItem("minValue");
+    let maxValue = localStorage.getItem("maxValue");
+    let minInputValue = localStorage.getItem("minInputValue");
+    let maxInputValue = localStorage.getItem("maxInputValue");
 
     if (stringValue) {
       let newValue = JSON.parse(stringValue);
       setValue(newValue);
     }
+    if (minValue) {
+      let newValue = JSON.parse(minValue);
+      setMinValue(newValue);
+    }
+    if (maxValue) {
+      let newValue = JSON.parse(maxValue);
+      setMaxValue(newValue);
+    }
+    if (minInputValue) {
+      let newValue = JSON.parse(minInputValue);
+      setMinInputValue(newValue);
+    }
+    if (maxInputValue) {
+      let newValue = JSON.parse(maxInputValue);
+      setMaxInputValue(newValue);
+    }
   }, []);
 
   useEffect(() => {
     localStorage.setItem("counterValue", JSON.stringify(value));
-  }, [value]);
+    localStorage.setItem("minValue", JSON.stringify(minValue));
+    localStorage.setItem("maxValue", JSON.stringify(maxValue));
+    localStorage.setItem("minInputValue", JSON.stringify(minInputValue));
+    localStorage.setItem("maxInputValue", JSON.stringify(maxInputValue));
+  }, [value, minValue, maxValue, minInputValue, maxInputValue]);
 
   const incHandler = () => setValue((prev) => prev + 1);
   const resetHandler = () => setValue(minValue);
