@@ -3,12 +3,10 @@ import { S } from "../_styles";
 
 type ValueInputProps = {
   spanText: string;
-
+  inputError: string;
   value: number;
 
   valueChangeCallback: (value: number) => void;
-
-  inputError: string;
 };
 
 export const ValueInput: React.FC<ValueInputProps> = ({

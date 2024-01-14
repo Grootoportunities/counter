@@ -23,19 +23,15 @@ export const Counter = () => {
 
   const incHandler = () => setValue((prev) => prev + 1);
   const resetHandler = () => setValue(minValue);
-  const onMaxValueChange = (maxValue: number) => setMaxValue(maxValue);
-  const onMinValueChange = (minValue: number) => setMinValue(minValue);
-  const setHandler = () => setValue(minValue);
+  const setHandler = (minValue: number, maxValue: number) => {
+    setMinValue(minValue);
+    setMaxValue(maxValue);
+    setValue(minValue);
+  };
 
   return (
     <S.Counter>
-      <Settings
-        maxValue={maxValue}
-        minValue={minValue}
-        onMaxValueChange={onMaxValueChange}
-        onMinValueChange={onMinValueChange}
-        setHandler={setHandler}
-      />
+      <Settings setHandler={setHandler} />
       <CounterBoard
         minValue={minValue}
         maxValue={maxValue}
