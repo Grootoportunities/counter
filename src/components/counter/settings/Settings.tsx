@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { ValueInput } from "./valueInput/ValueInput";
 import { Button } from "../../button/Button";
 import { S } from "./_styles";
@@ -26,10 +26,11 @@ export const Settings: React.FC<SettingsProps> = ({
     onMinValueChange(maxValue);
 
   const btnDisable =
-    minValue < 0 ||
-    maxValue < 1 ||
-    minValue === maxValue ||
-    maxValue < minValue;
+    minValue < 0 || minValue === maxValue || maxValue < minValue;
+  const minInputError =
+    maxValue === minValue || minValue < 0 ? "inputError" : "";
+  const maxInputError =
+    maxValue === minValue || maxValue < minValue ? "inputError" : "";
 
   return (
     <S.Settings>
@@ -37,15 +38,13 @@ export const Settings: React.FC<SettingsProps> = ({
         <ValueInput
           spanText={"Max value:"}
           value={maxValue}
-          maxValue={maxValue}
-          minValue={minValue}
+          inputError={maxInputError}
           valueChangeCallback={onMaxValueChangeHandler}
         />
         <ValueInput
           spanText={"Min value:"}
           value={minValue}
-          maxValue={maxValue}
-          minValue={minValue}
+          inputError={minInputError}
           valueChangeCallback={onMinValueChangeHandler}
         />
       </S.InputsWrapper>

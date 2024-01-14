@@ -1,29 +1,24 @@
 import React, { ChangeEvent } from "react";
-import styled from "styled-components";
 import { S } from "../_styles";
 
 type ValueInputProps = {
   spanText: string;
 
   value: number;
-  maxValue: number;
-  minValue: number;
 
   valueChangeCallback: (value: number) => void;
+
+  inputError: string;
 };
 
 export const ValueInput: React.FC<ValueInputProps> = ({
   spanText,
-  maxValue,
-  minValue,
   valueChangeCallback,
   value,
+  inputError,
 }) => {
   const onValueChangeHandler = (e: ChangeEvent<HTMLInputElement>) =>
     valueChangeCallback(Number(e.currentTarget.value));
-
-  const inputError =
-    maxValue < minValue || maxValue === minValue ? "inputError" : "";
 
   return (
     <S.ValueInput>
